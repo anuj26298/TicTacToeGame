@@ -14,6 +14,7 @@ public class TicTacToeGame {
 
         showBoard(board);
         int userMove = getUserMove(board, userInput);
+        makeMove(board, userMove, userLetter);
     }
 
     private static char[] createBoard(){
@@ -48,5 +49,11 @@ public class TicTacToeGame {
     }
     private static boolean isSpaceFree(char[] board, int index){
         return board[index] == ' ';
+    }
+
+    private static void makeMove(char[] board, int index, char letter){
+        boolean spaceFree = isSpaceFree(board, index);
+        if (spaceFree)
+            board[index] = letter;
     }
 }

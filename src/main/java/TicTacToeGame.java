@@ -107,6 +107,25 @@ public class TicTacToeGame {
                 (board[0] == letter && board[4] == letter && board[8] == letter )||
                 (board[2] == letter && board[4] == letter && board[6] == letter );
     }
-    
+    private boolean checkWinning(char[] tempBoard, char letter){
+        return checkBoard(tempBoard,letter);
+    }
+
+    private boolean winMove(int index, char[] board, char letter){
+        char[] tempBoard;
+        tempBoard = board.clone();
+        tempBoard[index] = letter;
+        return checkWinning(tempBoard,letter);
+    }
+
+    private char[] computerInput(char[] board, char userLetter, char computerLetter){
+        for (int i=0;i<9;i++){
+            if (board[i] == ' ' && winMove(i,board, computerLetter)){
+                board[i] = computerLetter;
+                return board;
+            }
+        }
+        return board;
+    }
 
 }

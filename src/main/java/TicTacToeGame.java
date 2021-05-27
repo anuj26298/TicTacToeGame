@@ -132,6 +132,22 @@ public class TicTacToeGame {
                 return board;
             }
         }
+        if (board[0] == ' '){
+            board[0] = computerLetter;
+            return board;
+        }
+        if (board[2] == ' '){
+            board[2] = computerLetter;
+            return board;
+        }
+        if (board[6] == ' '){
+            board[6] = computerLetter;
+            return board;
+        }
+        if (board[8] == ' '){
+            board[8] = computerLetter;
+            return board;
+        }
         return board;
     }
 

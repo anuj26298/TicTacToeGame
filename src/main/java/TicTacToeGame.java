@@ -125,6 +125,13 @@ public class TicTacToeGame {
                 return board;
             }
         }
+
+        for (int i=0;i<9;i++){
+            if (board[i] == ' ' && winMove(i,board,userLetter)){
+                board[i] = computerLetter;
+                return board;
+            }
+        }
         return board;
     }
 

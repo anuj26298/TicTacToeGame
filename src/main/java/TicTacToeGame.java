@@ -56,4 +56,19 @@ public class TicTacToeGame {
         if (spaceFree)
             board[index] = letter;
     }
+
+    private static boolean toss(Scanner userCall) {
+        System.out.println("What's your Call? (Head or Tail)");
+        String userTossCall;
+        userTossCall = userCall.next();
+        int turn = (int) (Math.random() * 2);
+        String tossCall = new String[]{"Head", "Tail"}[turn];
+        if (userTossCall.equals(tossCall)) {
+            System.out.println("User Wins Toss");
+            return true;
+        } else {
+            System.out.println("Computer Wins Toss");
+            return false;
+        }
+    }
 }

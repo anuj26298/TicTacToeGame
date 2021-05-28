@@ -6,16 +6,57 @@ public class TicTacToeGame {
         System.out.println("__x-o-x-o__ Tic Tac Toe __x-o-x-o__");
         char[] board = createBoard();
         Scanner userInput = new Scanner(System.in);
-
+        TicTacToeGame tictactoe = new TicTacToeGame();
         char userLetter = chooseUserLetter(userInput);
         char computerLetter = (userLetter == 'X') ? 'O' : 'X';
         System.out.println("User Letter: " + userLetter);
         System.out.println("Computer Letter: " + computerLetter);
 
-        showBoard(board);
-        int userMove = getUserMove(board, userInput);
-        makeMove(board, userMove, userLetter);
+        tictactoe.showBoard(board);
+
+        boolean tossResult = toss(userInput);
+
+        boolean play = true;
+
+        while (play) {
+            if (tossResult) {
+                int index = getUserMove(board, userInput);
+                tictactoe.makeMove(board, index, userLetter);
+                tictactoe.showBoard(board);
+                System.out.println("============================");
+                play = tictactoe.checkWinning(board, userLetter, computerLetter);
+                if (play) {
+                    board = tictactoe.computerInput(board, userLetter, computerLetter);
+                    tictactoe.showBoard(board);
+                    System.out.println("=============================");
+                    play = tictactoe.checkWinning(board, userLetter, computerLetter);
+                    if (!play)
+                        System.out.println("Game Over!!!");
+                } else
+                    System.out.println("Game Over!!!");
+            }
+            else {
+                board = tictactoe.computerInput(board,userLetter,computerLetter);
+                tictactoe.showBoard(board);
+                System.out.println("=============================");
+                play = tictactoe.checkWinning(board, userLetter, computerLetter);
+
+                if (play){
+                    int index = tictactoe.getUserMove(board, userInput);
+                    tictactoe.makeMove(board, index, userLetter);
+                    tictactoe.showBoard(board);
+                    System.out.println("=============================");
+                    play = tictactoe.checkWinning(board, userLetter, computerLetter);
+                    if (!play)
+                        System.out.println("Game Over!!!");
+                }
+                else
+                    System.out.println("Game Over!!!");
+            }
+        }
     }
+
+
 
     private static char[] createBoard(){
         char[] board = new char[10];
